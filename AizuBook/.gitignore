@@ -1,0 +1,8 @@
+﻿#.classファイルは不要
+*.class
+
+# bin フォルダは要らない
+bin/
+
+# bin フォルダは要らない
+.settings/
