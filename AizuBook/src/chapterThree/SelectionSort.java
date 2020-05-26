@@ -14,29 +14,43 @@ public class SelectionSort {
 			}
 
 			scanner.close();
+			int changeCount = 0;
 
-			//選択ソート
-			int selectCount = 0;
-			for(int i = 0; i < n-1; i++) {
-				int minKey = i;
-				for(int j = i; j <= n-1; j++) {
-					if(A[minKey] > A[j]) {
-						minKey = j;
+			//昇順に並べる選択ソート
+			for(int i = 0; i < A.length; i++) {
+				int minIndex = i;
+				for(int j = i; j < A.length; j++) {
+					if(A[minIndex] > A[j]) {
+						minIndex = j;
 					}
 				}
-				// 最小値が入れ替わっていなければ数値の入れ替えをスキップ
-	            if (i == minKey) {
-	                continue;
-	            }
-
-	            //値の交換
-				int changeValue = A[i];
-				A[i] = A[minKey];
-				A[minKey] = changeValue;
-				selectCount++;
+			//最小値を持つ添え字の値が変わっていなければ値交換はしなくてよい
+			if(minIndex == i) continue;
+			//値交換
+			int tmp = A[i];
+			A[i] = A[minIndex];
+			A[minIndex] = tmp;
+			changeCount++;
 			}
 			System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
-			System.out.println(selectCount);
+			System.out.println(changeCount);
+
+			//降順に並べる選択ソート
+			for(int i = 0; i < A.length; i++) {
+				int minIndex = i;
+				for(int j = i; j < A.length; j++) {
+					if(A[minIndex] < A[j]) {
+						minIndex = j;
+					}
+				}
+				//最小値を持つ添え字の値が変わっていなければ値交換はしなくてよい
+				if(minIndex == i) continue;
+				//値交換
+				int tmp = A[i];
+				A[i] = A[minIndex];
+				A[minIndex] = tmp;
+			}
+			System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
 	 }
 }
 
