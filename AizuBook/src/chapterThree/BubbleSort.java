@@ -33,7 +33,7 @@ public class BubbleSort {
 			}
 		}
 		System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
-		//System.out.println(changeCount);
+		System.out.println(changeCount);
 
 
 		//昇順に並べるバブルソート
