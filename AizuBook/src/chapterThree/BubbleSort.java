@@ -13,16 +13,19 @@ public class BubbleSort {
 		}
 		int changeCount = 0;
 		scanner.close();
-		//バブルソート
-		for(int i = n - 1; i > 1; i--) {
+
+		//降順に並べるバブルソート
+		for(int i = 0; i < A.length; i++) {
+			//昇順に並ぶ隣接要素が存在する時にtrue
 			boolean flag = true;
 			while(flag) {
 				flag = false;
-				for(int j = n - 1; j >= 1; j--) {
-					int key = A[j];
-					if(A[j-1] > key) {
-						A[j] = A[j-1];
-						A[j-1] = key;
+				for(int j = A.length - 1; j > 0; j--) {
+					if(A[j - 1] > A[j]) {
+						//A[j]とA{j - 1]を交換
+						int tmp = A[j];
+						A[j] = A[j - 1];
+						A[j - 1] = tmp;
 						flag = true;
 						changeCount++;
 					}
@@ -30,6 +33,25 @@ public class BubbleSort {
 			}
 		}
 		System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
-		System.out.println(changeCount);
+		//System.out.println(changeCount);
+
+
+		//昇順に並べるバブルソート
+		for(int i = 0; i < A.length; i++) {
+			//降順に並ぶ隣接要素が存在する時にtrueのフラグ
+			boolean flag = true;
+			while(flag) {
+				flag = false;
+				for(int j = A.length - 1; j > 0; j--) {
+					if(A[j - 1] < A[j]) {
+						int temp = A[j];
+						A[j] = A[j - 1];
+						A[j - 1] = temp;
+						flag = true;
+					}
+				}
+			}
+		}
+		System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
 	}
 }
