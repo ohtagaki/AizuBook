@@ -16,7 +16,6 @@ public class ShellSort {
 			a[i] = stdIn.nextInt();
 		}
 		stdIn.close();
-
 		shellSort(a, n);
 
 		System.out.println(m);
@@ -29,35 +28,33 @@ public class ShellSort {
 		System.out.println(count);
 		for (int i = 0; i < n; i++)
 			System.out.println(a[i]);
+
 	}
 
-	public static void insertionSort(int[] a, int n, int g) {
-		for (int i = g; i < n; i++) {
-			int v = a[i];
+	public static void insertionSort(int[] A, int n, int g) {
+		for(int i = g; i < n; i++) {
+			int v = A[i];
 			int j = i - g;
-			while (j >= 0 && a[j] > v) {
-				a[j+g] = a[j];
-				j -= g;
+			while(j >= 0 && A[j] > v) {
+				A[j + g] = A[j];
+				j = j -g;
 				count++;
 			}
-			a[j+g] = v;
+			A[j + g] = v;
 		}
 	}
 
-	public static void shellSort(int[] a, int n) {
-
+	public static void shellSort(int[] A, int n) {
 		count = 0;
 		m = 0;
-
-		for (int i = 1; ;i = 3 * i + 1) {
-			if (i > n) break;
+		for(int i = 1; ;i = 3 * i + 1) {
+			if(i > n) break;
 			G[m] = i;
 			m++;
 		}
 
-
-		for (int i = m - 1; i >= 0; i--)
-			insertionSort(a, n, G[i]);
-
+		for(int i = m - 1; i >= 0; i--) {
+			insertionSort(A, n, G[i]);
+		}
 	}
 }
