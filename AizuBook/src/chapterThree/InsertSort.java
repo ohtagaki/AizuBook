@@ -14,18 +14,30 @@ public class InsertSort {
 			A[i] = scanner.nextInt();
 		}
 		scanner.close();
-		System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
 
-		//挿入ソート
-		for(int j = 1; j < A.length; j++) {
-			int key = A[j];
-			int check = j -1;
-			while( check >= 0 && A[check] > key) {
-				A[check + 1] = A[check];
-				check--;
+		//昇順に並べる挿入ソート
+		for(int i = 0; i < A.length; i++) {
+			int tmp = A[i];
+			int j = i - 1;
+			while(j >= 0 && A[j] > tmp) {
+				A[j + 1] = A[j];
+				j--;
 			}
-			A[ check +  1] = key;
-			System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
+			A[j + 1] = tmp;
+			//System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
 		}
+		System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
+		
+		//降順に並べる挿入ソート
+		for(int m = 0; m < A.length; m++) {
+			int temp = A[m];
+			int l = m - 1;
+			while(l >= 0 && A[l] < temp) {
+				A[l + 1] = A[l];
+				l--;
+			}
+			A[l + 1] = temp;
+		}
+		System.out.println(Arrays.toString(A).replaceAll("[,\\[\\]]", ""));
 	 }
 }
