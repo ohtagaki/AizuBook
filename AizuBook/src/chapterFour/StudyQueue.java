@@ -1,44 +1,39 @@
 package chapterFour;
 
-import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.Scanner;
 
-//4-3 キュー
 public class StudyQueue {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int number = sc.nextInt();
-		int quantum = sc.nextInt();
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder builder = new StringBuilder();
+		String[] line = reader.readLine().split(" ");
+		int N = Integer.parseInt(line[0]);
+		int Q = Integer.parseInt(line[1]);
 
-		Queue<String> names = new LinkedList<String>();
-		Queue<Integer> times = new LinkedList<Integer>();
-
-		for(int i=0; i < number; i++) {
-			names.add(sc.next());
-			times.add(sc.nextInt());
+		Queue<String[]> queue = new ArrayDeque<String[]>();
+		for(int i = 0; i < N; i++) {
+			queue.add(reader.readLine().split(" "));
 		}
-
-		int totalTime = 0;
-		Queue<String> resultNames = new LinkedList<String>();
-		Queue<Integer> resultTimes = new LinkedList<Integer>();
-		while(!names.isEmpty()) {
-			int tempTime = times.remove();
-			if( tempTime <= quantum) {
-				totalTime = totalTime + tempTime;
-				resultNames.add(names.remove());
-				resultTimes.add(totalTime);
+		String[] work = new String[2];
+		int elapse = 0;
+		while((work = queue.poll()) != null) {
+			int time = Integer.parseInt(work[1]);
+			if(time <= Q) {
+				elapse += time;
+				builder.append(work[0]).append(" ").append(elapse).append("\n");
 			}else {
-				totalTime = totalTime + quantum;
-				names.add(names.remove());
-				times.add(tempTime - quantum);
+				time -= Q;
+				elapse += Q;
+				work[1] = String.valueOf(time);
+				queue.add(work);
 			}
 		}
-		for(int i = 0; i < number; i++) {
-			System.out.println(resultNames.remove() + " " + resultTimes.remove());
-		}
 
-		sc.close();
+		System.out.println(builder);
 	}
 }
