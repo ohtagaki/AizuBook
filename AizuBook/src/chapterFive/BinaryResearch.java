@@ -1,40 +1,39 @@
 package chapterFive;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Scanner;
 
+//5-3 二分探索
 public class BinaryResearch {
 
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		int n = Integer.parseInt(br.readLine());
-		String[] ss = br.readLine().split(" ");
-		int[] s = new int[n];
+		Scanner sc = new Scanner(System.in);
+		int n = Integer.parseInt(sc.next());
+		ArrayList<Integer> S = new ArrayList<>();
 		for(int i = 0; i < n; i++) {
-			s[i] = Integer.parseInt(ss[i]);
+			S.add(Integer.parseInt(sc.next()));
 		}
-
-		int q = Integer.parseInt(br.readLine());
-		String[] st = br.readLine().split(" ");
-		int[] t = new int[q];
+		int q = Integer.parseInt(sc.next());
+		ArrayList<Integer> T = new ArrayList<>();
 		for(int i = 0; i < q; i++) {
-			t[i] = Integer.parseInt(st[i]);
+			T.add(Integer.parseInt(sc.next()));
 		}
+		sc.close();
 
-		//2分探索
+		//二分探索
 		int i = 0;
 		int count = 0;
-		while(i != t.length) {
+		while(i != T.size()) {
 			int left = 0;
-			int right = s.length;
+			int right = S.size();
+			int key = T.get(i);
 			while(left < right) {
 				int mid = (left + right) / 2;
-				if(s[mid] == t[i]) {
+				if(S.get(mid) == key) {
 					count++;
 					break;
-				}else if(t[i] < s[mid]) {
+				}else if(key < S.get(mid)) {
 					right = mid;
 				}else {
 					left = mid + 1;
