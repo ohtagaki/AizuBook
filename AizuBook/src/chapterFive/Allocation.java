@@ -26,9 +26,11 @@ public class Allocation {
 
 	private static int solve() {
 		int left = 0;
+		//荷物の個数 * 1個当たりの最大重量
 		int right = 100000 * 10000;
 		while(right > left + 1) {
 			int mid = (left + right) / 2;
+			//mid = Pの場合、荷物を何個積めるかチェック
 			int v = search_maxv(mid);
 			if(v >= loadSize) {
 				right = mid;
@@ -39,6 +41,7 @@ public class Allocation {
 		return right;
 	}
 
+	//最大積載量Pのk台のトラックで何個荷物を積めるか
 	private static int search_maxv(int P) {
 		int v = 0;
 		for(int i = 0; i < truck; i++) {
